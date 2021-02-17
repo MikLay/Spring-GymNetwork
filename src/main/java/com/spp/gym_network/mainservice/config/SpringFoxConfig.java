@@ -19,11 +19,11 @@ public class SpringFoxConfig {
 
     private ApiInfo apiInfo() {
         return new ApiInfo(
-                "My REST API",
+                "GymNetwork API",
                 "The system is designed to keep track of the evaluation of the network of gyms, convenient customer planning\n" +
                         "          classes, to obtain statistics about customers, coaches, gyms and classes. Also AIS\n" +
                         "          you can register and consume in gyms.",
-                "API TOS",
+                "0.0.1",
                 "Terms of service",
                 new Contact("Michael Fediuchenko", "www.github.com/MikLay", "mixei112299@gmail.com"),
                 "License of API",

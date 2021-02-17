@@ -1,0 +1,21 @@
+package com.spp.gym_network.mainservice.controller;
+
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.Authentication;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import java.util.Map;
+
+import static java.util.Map.entry;
+
+@RestController
+public class AuthController {
+    @GetMapping("/login")
+    Map<String, String> login(Authentication authentication) {
+        return Map.ofEntries(
+                entry("endpoint", "USER"),
+                entry("actor", authentication.getName())
+        );
+    }
+}

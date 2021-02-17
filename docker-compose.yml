@@ -3,6 +3,7 @@ services:
   app-server:
     container_name: app-server
     # Configuration for building the docker image for the backend service
+    restart: always
     build:
       context: . # Use an image built from the specified dockerfile in the current directory.
       dockerfile: Dockerfile
@@ -36,11 +37,10 @@ services:
     networks:
       - backend
   redis:
-    image: redis
+    image: redis:latest
     command: [ "redis-server", "--protected-mode", "no" ]
-    hostname: redis
     ports:
-      - '6379:6379'
+      - "6379:6379"
     networks:
       - backend
 

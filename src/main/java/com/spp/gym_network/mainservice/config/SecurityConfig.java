@@ -35,8 +35,10 @@ class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .addFilterAt(this::authenticationFilter, UsernamePasswordAuthenticationFilter.class)
                 // Auth on all endpoints
                 .authorizeRequests(conf -> {
-                    conf.anyRequest().authenticated();
+                    conf.antMatchers("/user").permitAll();
+                    conf.antMatchers("/admin", "/system").authenticated();
                 })
+
                 // Disable "JSESSIONID" cookies
                 .sessionManagement(conf -> {
                     conf.sessionCreationPolicy(SessionCreationPolicy.STATELESS);
