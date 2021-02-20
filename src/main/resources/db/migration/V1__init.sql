@@ -1,34 +1,47 @@
 -- we don't know how to generate root <with-no-name> (class Root) :(
+-- create table users
+-- (
+--     id         bigint auto_increment
+--         primary key,
+--     email      varchar(255) null,
+--     first_name varchar(255) null,
+--     last_name  varchar(255) null,
+--     password   varchar(255) null,
+--     constraint UK_6dotkott2kjsp8vw4d0m25fb7
+--         unique (email)
+-- );
 
 
-create table roles
-(
-    role_id int          not null
-        primary key,
-    role    varchar(255) null
-);
 
-REPLACE INTO `roles` VALUES (1,'ADMIN');
 
-create table users
-(
-    user_id  bigint       not null
-        primary key,
-    active   bit          null,
-    email    varchar(255) null,
-    password varchar(255) null
-);
-
-create table user_role
-(
-    user_id bigint not null,
-    role_id int    not null,
-    primary key (user_id, role_id),
-    constraint FKj345gk1bovqvfame88rcx7yyx
-        foreign key (user_id) references users (user_id),
-    constraint FKt7e7djp752sqn6w22i6ocqy6q
-        foreign key (role_id) references roles (role_id)
-);
+-- create table roles
+-- (
+--     role_id int          not null
+--         primary key,
+--     role    varchar(255) null
+-- );
+--
+-- REPLACE INTO `roles` VALUES (1,'ADMIN');
+--
+-- create table users
+-- (
+--     user_id  bigint       not null
+--         primary key,
+--     active   bit          null,
+--     email    varchar(255) null,
+--     password varchar(255) null
+-- );
+--
+-- create table user_role
+-- (
+--     user_id bigint not null,
+--     role_id int    not null,
+--     primary key (user_id, role_id),
+--     constraint FKj345gk1bovqvfame88rcx7yyx
+--         foreign key (user_id) references users (user_id),
+--     constraint FKt7e7djp752sqn6w22i6ocqy6q
+--         foreign key (role_id) references roles (role_id)
+-- );
 
 -- create table gyms
 -- (
