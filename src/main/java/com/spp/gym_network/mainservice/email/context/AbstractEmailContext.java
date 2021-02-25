@@ -25,7 +25,7 @@ public abstract class AbstractEmailContext {
         this.context = new HashMap<>();
     }
 
-    public <T> void init(T context){
+    public <T> void init(T context) {
         //we can do any common configuration setup here
         // like setting up some base URL and context
     }
