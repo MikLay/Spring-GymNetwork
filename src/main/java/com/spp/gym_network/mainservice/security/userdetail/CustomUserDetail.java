@@ -1,13 +1,17 @@
 package com.spp.gym_network.mainservice.security.userdetail;
 
-import java.util.*;
-
+import ch.qos.logback.core.net.SyslogOutputStream;
 import com.spp.gym_network.mainservice.user.jpa.data.Role;
 import com.spp.gym_network.mainservice.user.jpa.data.UserEntity;
 import lombok.AllArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
+
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
+import java.util.Set;
 
 @AllArgsConstructor
 public class CustomUserDetail implements UserDetails {
@@ -55,4 +59,17 @@ public class CustomUserDetail implements UserDetails {
         return user.isAccountVerified();
     }
 
+
+    @Override
+    public boolean equals(Object o) {
+        if (o instanceof CustomUserDetail) {
+            return user.getEmail().equals(((CustomUserDetail) o).user.getEmail());
+        }
+        return false;
+    }
+
+    @Override
+    public int hashCode() {
+        return user.getEmail().hashCode();
+    }
 }
