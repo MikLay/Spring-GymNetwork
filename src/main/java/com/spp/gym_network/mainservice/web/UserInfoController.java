@@ -1,4 +1,4 @@
-package com.spp.gym_network.mainservice.controller;
+package com.spp.gym_network.mainservice.web;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
