@@ -14,29 +14,30 @@ import javax.validation.Valid;
 
 @Slf4j
 @RestController
-@RequestMapping("/register")
+@RequestMapping("/auth")
 public class RegistrationController {
 
     @Autowired
     private UserService userService;
 
-    @PostMapping
-    public String userRegistration(@RequestBody @Valid UserData userData, final BindingResult bindingResult){
-        if(bindingResult.hasErrors()){
+
+    @PostMapping("signup")
+    public String userRegistration(final @RequestBody @Valid UserData userData, final BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
             return "NG!";
         }
         try {
             userService.register(userData);
-        }catch (UserAlreadyExistException e){
-            bindingResult.rejectValue("email", "userData.email","An account already exists for this email.");
+        } catch (UserAlreadyExistException e) {
+            bindingResult.rejectValue("email", "userData.email", "An account already exists for this email.");
             return "ar";
         }
         return "OK!";
     }
 
     @GetMapping("verify")
-    public String verifyCustomer(@RequestParam(required = false) String token){
-        if(StringUtils.isEmpty(token)){
+    public String verifyCustomer(final @RequestParam(required = false) String token) {
+        if (StringUtils.isEmpty(token)) {
             return "Missing token!";
         }
         try {
