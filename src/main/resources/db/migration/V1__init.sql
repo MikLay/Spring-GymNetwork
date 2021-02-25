@@ -192,4 +192,3 @@
 --
 -- create index gym_id_idx
 -- 	on workouts (gym_id);
-
