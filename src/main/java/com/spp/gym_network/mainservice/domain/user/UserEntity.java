@@ -6,9 +6,11 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
+import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.sql.Timestamp;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
@@ -18,6 +20,7 @@ import java.util.Set;
 @ToString
 @NoArgsConstructor
 @Entity
+@Inheritance(strategy = InheritanceType.JOINED)
 @Table(name = "users")
 public class UserEntity implements Serializable {
 
@@ -29,6 +32,21 @@ public class UserEntity implements Serializable {
 
     private String lastName;
 
+    private Timestamp birthDate;
+
+    @CreationTimestamp
+    @Column(updatable = false)
+    private Timestamp registrationDate;
+
+    private String phoneNumber;
+
+    @Lob
+    private byte[] image;
+
+    @Enumerated(EnumType.STRING)
+    private ESex sex;
+
+   // Auth part
     @Column(unique = true)
     private String email;
 

@@ -13,6 +13,7 @@ import com.spp.gym_network.mainservice.repo.SecureTokenRepository;
 import com.spp.gym_network.mainservice.repo.UserRepository;
 import com.spp.gym_network.mainservice.service.SecureTokenService;
 import com.spp.gym_network.mainservice.service.UserService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -20,11 +21,13 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import javax.mail.MessagingException;
+import java.io.IOException;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+@Slf4j
 @Service("userService")
 public class DefaultUserService implements UserService {
 
@@ -56,6 +59,11 @@ public class DefaultUserService implements UserService {
         userEntity.setRoles(Stream.of(roleRepository.findByName(ERoles.ROLE_USER))
                 .collect(Collectors.toCollection(HashSet::new)));
         encodePassword(userEntity, user);
+        try {
+            userEntity.setImage(user.getImage().getBytes());
+        } catch (IOException e) {
+            log.warn("Exception while user image upload: " + e.getMessage());
+        }
         UserEntity result = userRepository.save(userEntity);
         sendRegistrationConfirmationEmail(userEntity);
         return result;
@@ -95,7 +103,6 @@ public class DefaultUserService implements UserService {
         secureTokenService.removeToken(secureToken);
         return true;
     }
-
 
 
     @Override
