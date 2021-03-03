@@ -56,7 +56,7 @@ public class DefaultUserService implements UserService {
         UserEntity userEntity = new UserEntity();
         BeanUtils.copyProperties(user, userEntity);
         //TODO: add better role logic
-        userEntity.setRoles(Stream.of(roleRepository.findByName(ERoles.ROLE_USER))
+        userEntity.setRoles(Stream.of(roleRepository.findByName(ERoles.ROLE_USER), roleRepository.findByName(ERoles.ROLE_CLIENT))
                 .collect(Collectors.toCollection(HashSet::new)));
         encodePassword(userEntity, user);
         try {
