@@ -1,6 +1,6 @@
 package com.spp.gym_network.mainservice.security.filters;
 
-import com.spp.gym_network.mainservice.security.CustomUserDetailsService;
+import com.spp.gym_network.mainservice.service.impl.CustomUserDetailsService;
 import com.spp.gym_network.mainservice.security.provider.JwtTokenProvider;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;

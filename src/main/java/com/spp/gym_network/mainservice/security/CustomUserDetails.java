@@ -1,7 +1,7 @@
 package com.spp.gym_network.mainservice.security;
 
-import com.spp.gym_network.mainservice.domain.user.Role;
-import com.spp.gym_network.mainservice.domain.user.UserEntity;
+import com.spp.gym_network.mainservice.model.user.Role;
+import com.spp.gym_network.mainservice.model.user.UserEntity;
 import lombok.AllArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;

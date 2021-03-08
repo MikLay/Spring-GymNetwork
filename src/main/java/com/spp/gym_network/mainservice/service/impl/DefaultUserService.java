@@ -1,16 +1,16 @@
 package com.spp.gym_network.mainservice.service.impl;
 
-import com.spp.gym_network.mainservice.domain.security.SecureToken;
-import com.spp.gym_network.mainservice.domain.user.ERoles;
-import com.spp.gym_network.mainservice.domain.user.UserEntity;
+import com.spp.gym_network.mainservice.model.security.SecureToken;
+import com.spp.gym_network.mainservice.model.user.ERoles;
+import com.spp.gym_network.mainservice.model.user.UserEntity;
 import com.spp.gym_network.mainservice.dto.SignUpRequest;
-import com.spp.gym_network.mainservice.email.context.AccountVerificationEmailContext;
-import com.spp.gym_network.mainservice.email.service.EmailService;
-import com.spp.gym_network.mainservice.exceptions.InvalidTokenException;
-import com.spp.gym_network.mainservice.exceptions.UserAlreadyExistException;
-import com.spp.gym_network.mainservice.repo.RoleRepository;
-import com.spp.gym_network.mainservice.repo.SecureTokenRepository;
-import com.spp.gym_network.mainservice.repo.UserRepository;
+import com.spp.gym_network.mainservice.service.email.context.AccountVerificationEmailContext;
+import com.spp.gym_network.mainservice.service.email.service.EmailService;
+import com.spp.gym_network.mainservice.exception.InvalidTokenException;
+import com.spp.gym_network.mainservice.exception.UserAlreadyExistException;
+import com.spp.gym_network.mainservice.repository.RoleRepository;
+import com.spp.gym_network.mainservice.repository.SecureTokenRepository;
+import com.spp.gym_network.mainservice.repository.UserRepository;
 import com.spp.gym_network.mainservice.service.SecureTokenService;
 import com.spp.gym_network.mainservice.service.UserService;
 import lombok.extern.slf4j.Slf4j;

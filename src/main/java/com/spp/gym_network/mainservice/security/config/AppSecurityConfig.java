@@ -86,6 +86,8 @@ public class AppSecurityConfig extends WebSecurityConfigurerAdapter {
                     .permitAll()
                 .antMatchers("/api/auth/**")
                     .permitAll()
+                .antMatchers("/gyms/**", "/coaches/**")
+                    .permitAll()
                 .anyRequest()
                 .authenticated();
 

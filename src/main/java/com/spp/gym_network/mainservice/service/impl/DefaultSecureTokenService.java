@@ -1,7 +1,7 @@
 package com.spp.gym_network.mainservice.service.impl;
 
-import com.spp.gym_network.mainservice.domain.security.SecureToken;
-import com.spp.gym_network.mainservice.repo.SecureTokenRepository;
+import com.spp.gym_network.mainservice.model.security.SecureToken;
+import com.spp.gym_network.mainservice.repository.SecureTokenRepository;
 import com.spp.gym_network.mainservice.service.SecureTokenService;
 import org.apache.tomcat.util.codec.binary.Base64;
 import org.springframework.beans.factory.annotation.Autowired;

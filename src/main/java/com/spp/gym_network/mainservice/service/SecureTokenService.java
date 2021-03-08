@@ -1,6 +1,6 @@
 package com.spp.gym_network.mainservice.service;
 
-import com.spp.gym_network.mainservice.domain.security.SecureToken;
+import com.spp.gym_network.mainservice.model.security.SecureToken;
 
 public interface SecureTokenService {
 

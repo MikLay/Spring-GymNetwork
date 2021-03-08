@@ -1,10 +1,10 @@
 package com.spp.gym_network.mainservice.service;
 
 
-import com.spp.gym_network.mainservice.domain.user.UserEntity;
+import com.spp.gym_network.mainservice.model.user.UserEntity;
 import com.spp.gym_network.mainservice.dto.SignUpRequest;
-import com.spp.gym_network.mainservice.exceptions.InvalidTokenException;
-import com.spp.gym_network.mainservice.exceptions.UserAlreadyExistException;
+import com.spp.gym_network.mainservice.exception.InvalidTokenException;
+import com.spp.gym_network.mainservice.exception.UserAlreadyExistException;
 
 public interface UserService {
 
