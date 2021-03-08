@@ -7,10 +7,10 @@ import net.kaczmarzyk.spring.data.jpa.web.annotation.Spec;
 import org.springframework.data.jpa.domain.Specification;
 
 @And({
-        @Spec(path = "address.city", params = "address", spec = Like.class),
-        @Spec(path = "address.country", params = "address", spec = Like.class),
-        @Spec(path = "address.flat", params = "address", spec = Like.class),
-        @Spec(path = "address.street", params = "address", spec = Like.class),
+        @Spec(path = "address.city", params = "city", spec = Like.class),
+        @Spec(path = "address.country", params = "country", spec = Like.class),
+        @Spec(path = "address.flat", params = "flat", spec = Like.class),
+        @Spec(path = "address.street", params = "street", spec = Like.class),
         @Spec(path = "email", spec = Like.class),
         @Spec(path = "phone", spec = Like.class),
 })
