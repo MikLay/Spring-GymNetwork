@@ -1,6 +1,6 @@
 package com.spp.gym_network.mainservice.dto;
 
-import com.spp.gym_network.mainservice.domain.user.ESex;
+import com.spp.gym_network.mainservice.model.user.ESex;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.web.multipart.MultipartFile;
