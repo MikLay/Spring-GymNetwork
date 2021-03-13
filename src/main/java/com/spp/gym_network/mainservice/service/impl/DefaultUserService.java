@@ -1,18 +1,18 @@
 package com.spp.gym_network.mainservice.service.impl;
 
+import com.spp.gym_network.mainservice.dto.requests.SignUpRequest;
+import com.spp.gym_network.mainservice.exception.InvalidTokenException;
+import com.spp.gym_network.mainservice.exception.UserAlreadyExistException;
 import com.spp.gym_network.mainservice.model.security.SecureToken;
 import com.spp.gym_network.mainservice.model.user.ERoles;
 import com.spp.gym_network.mainservice.model.user.UserEntity;
-import com.spp.gym_network.mainservice.dto.SignUpRequest;
-import com.spp.gym_network.mainservice.service.email.context.AccountVerificationEmailContext;
-import com.spp.gym_network.mainservice.service.email.service.EmailService;
-import com.spp.gym_network.mainservice.exception.InvalidTokenException;
-import com.spp.gym_network.mainservice.exception.UserAlreadyExistException;
 import com.spp.gym_network.mainservice.repository.RoleRepository;
 import com.spp.gym_network.mainservice.repository.SecureTokenRepository;
 import com.spp.gym_network.mainservice.repository.UserRepository;
 import com.spp.gym_network.mainservice.service.SecureTokenService;
 import com.spp.gym_network.mainservice.service.UserService;
+import com.spp.gym_network.mainservice.service.email.context.AccountVerificationEmailContext;
+import com.spp.gym_network.mainservice.service.email.service.EmailService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +22,7 @@ import org.springframework.stereotype.Service;
 
 import javax.mail.MessagingException;
 import java.io.IOException;
+import java.sql.Timestamp;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.stream.Collectors;
@@ -56,6 +57,7 @@ public class DefaultUserService implements UserService {
         UserEntity userEntity = new UserEntity();
         BeanUtils.copyProperties(user, userEntity);
         //TODO: add better role logic
+        userEntity.setBirthDate(Timestamp.valueOf(user.getBirthDate().atStartOfDay()));
         userEntity.setRoles(Stream.of(roleRepository.findByName(ERoles.ROLE_USER), roleRepository.findByName(ERoles.ROLE_CLIENT))
                 .collect(Collectors.toCollection(HashSet::new)));
         encodePassword(userEntity, user);
@@ -102,6 +104,11 @@ public class DefaultUserService implements UserService {
         // we don't need invalid password now
         secureTokenService.removeToken(secureToken);
         return true;
+    }
+
+    @Override
+    public UserEntity getUserByEmail(String email) {
+        return userRepository.findByEmail(email);
     }
 
 
