@@ -5,5 +5,6 @@ public enum ERoles {
     ROLE_CLIENT,
     ROLE_COACH,
     ROLE_ADMIN,
-    ROLE_MANAGER
+    ROLE_MANAGER,
+    ROLE_ANONYMOUS
 }
