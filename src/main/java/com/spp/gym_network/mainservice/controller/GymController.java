@@ -24,6 +24,6 @@ public class GymController {
 
     @GetMapping("/gyms")
     public ResponseEntity<Page<GymDTO>> findAll(GymSpec spec, Pageable page) {
-        return ResponseEntity.ok((gymService.findAll(spec, page).map(gymMapper::toDto)));
+        return ResponseEntity.ok(gymService.findAll(spec, page).map(gymMapper::toDto));
     }
 }

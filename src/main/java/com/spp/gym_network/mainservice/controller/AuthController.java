@@ -3,8 +3,8 @@ package com.spp.gym_network.mainservice.controller;
 import com.spp.gym_network.mainservice.model.user.UserEntity;
 import com.spp.gym_network.mainservice.dto.ApiResponse;
 import com.spp.gym_network.mainservice.dto.JwtAuthenticationResponse;
-import com.spp.gym_network.mainservice.dto.LoginRequest;
-import com.spp.gym_network.mainservice.dto.SignUpRequest;
+import com.spp.gym_network.mainservice.dto.requests.LoginRequest;
+import com.spp.gym_network.mainservice.dto.requests.SignUpRequest;
 import com.spp.gym_network.mainservice.exception.InvalidTokenException;
 import com.spp.gym_network.mainservice.exception.UserAlreadyExistException;
 import com.spp.gym_network.mainservice.security.provider.JwtTokenProvider;
@@ -55,7 +55,7 @@ public class AuthController {
 
 
     @PostMapping("signup")
-    public ResponseEntity<?> registerUser(final @Valid @RequestBody SignUpRequest signUpRequest) {
+    public ResponseEntity<?> registerUser(final @Valid @ModelAttribute SignUpRequest signUpRequest) {
         try {
             UserEntity user = userService.register(signUpRequest);
 
