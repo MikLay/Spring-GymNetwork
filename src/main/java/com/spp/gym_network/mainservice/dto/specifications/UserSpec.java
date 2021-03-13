@@ -10,7 +10,8 @@ import org.springframework.data.jpa.domain.Specification;
 @And({
         @Spec(path = "firsName", spec = Like.class),
         @Spec(path = "lastName", spec = Like.class),
-        @Spec(path = "birthDate", params = {"birthDateAfter", "birthDateBefore"}, spec = DateBetween.class),
+        @Spec(path = "birthDate", params = {"birthDateAfter", "birthDateBefore"},
+                spec = DateBetween.class),
         @Spec(path = "email", spec = Like.class),
         @Spec(path = "sex", spec = Like.class),
 })
