@@ -1,6 +1,5 @@
 package com.spp.gym_network.mainservice.dto;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.annotation.JsonView;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -12,6 +11,4 @@ import java.util.List;
 @Data
 public class ClientDTO extends UserDTO {
     private List<SubscriptionDTO> subscriptions;
-
-    private List<WorkoutDTO> workouts;
 }
