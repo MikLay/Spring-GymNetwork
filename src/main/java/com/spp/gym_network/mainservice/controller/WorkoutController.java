@@ -30,7 +30,7 @@ public class WorkoutController {
 
     @JsonView(JsonViews.Summary.class)
     @GetMapping
-    @PreAuthorize("hasRole('ROLE_COACH')")
+    @PreAuthorize("hasRole('ROLE_COACH') or hasRole('ROLE_CLIENT') or hasRole('ROLE_MANAGER')")
     public ResponseEntity<Page<WorkoutDTO>> getAllWorkouts(@AuthenticationPrincipal CustomUserDetails userDetails, Pageable page) {
         return ResponseEntity.ok(workoutService.findMyWorkouts(userDetails, page).map(workoutMapper::toDto));
     }
