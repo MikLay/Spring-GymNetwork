@@ -11,10 +11,11 @@ import java.util.List;
 public class GymDTO {
     private Long id;
 
-
     private String phone;
 
     private String email;
+
+    private Long fine;
 
     @JsonUnwrapped
     private AddressDTO address;

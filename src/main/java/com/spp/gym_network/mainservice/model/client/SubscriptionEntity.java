@@ -6,8 +6,8 @@ import lombok.Setter;
 import lombok.ToString;
 
 import javax.persistence.*;
+import java.sql.Time;
 import java.sql.Timestamp;
-import java.util.Date;
 
 @Getter
 @Setter
@@ -20,9 +20,13 @@ public class SubscriptionEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private Timestamp startTime;
+    private Timestamp startingDatetime;
 
-    private Timestamp endTime;
+    private Timestamp expiringDatetime;
+
+    private Time beginningTime;
+
+    private Time endingTime;
 
     private Long price;
 

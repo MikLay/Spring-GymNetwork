@@ -1,6 +1,6 @@
 package com.spp.gym_network.mainservice.service.impl;
 
-import com.spp.gym_network.mainservice.exception.BadRequestException;
+import com.spp.gym_network.mainservice.exception.EntityNotFoundException;
 import com.spp.gym_network.mainservice.model.coach.CoachEntity;
 import com.spp.gym_network.mainservice.model.coach.TimetableEntity;
 import com.spp.gym_network.mainservice.model.gym.GymEntity;
@@ -47,7 +47,7 @@ public class DefaultTimetableService implements TimetableService {
             return timetableRepository.save(timetable);
         } catch (Exception e) {
             log.error(e.getMessage());
-            throw new BadRequestException(e.getMessage());
+            throw new EntityNotFoundException(e.getMessage());
         }
     }
 

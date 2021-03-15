@@ -16,7 +16,7 @@ public class WorkoutCreateRequest {
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss")
     private Timestamp endTime;
 
-    @NotNull(message = "GymId must be provided")
+    @NotNull(message = "Gym Id must be provided")
     private Long gymId;
 
     private Long coachId;

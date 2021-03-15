@@ -56,6 +56,7 @@ public class GymEntity {
     )
     private List<WorkoutEntity> workouts = new ArrayList<>();
 
+    private Long fine;
 
     @Override
     public boolean equals(final Object o) {

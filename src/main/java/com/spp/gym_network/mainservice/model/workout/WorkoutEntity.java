@@ -5,17 +5,8 @@ import com.spp.gym_network.mainservice.model.coach.CoachEntity;
 import com.spp.gym_network.mainservice.model.gym.GymEntity;
 import lombok.Data;
 
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
-import java.util.Date;
+import javax.persistence.*;
+import java.sql.Timestamp;
 
 @Data
 @Entity
@@ -25,14 +16,9 @@ public class WorkoutEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Temporal(TemporalType.DATE)
-    private Date date;
+    private Timestamp startTime;
 
-    @Temporal(TemporalType.TIME)
-    private Date startTime;
-
-    @Temporal(TemporalType.TIME)
-    private Date endTime;
+    private Timestamp endTime;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "coach_id")
@@ -46,5 +32,9 @@ public class WorkoutEntity {
     @JoinColumn(name = "gym_id")
     private GymEntity gym;
 
-    private int surcharge;
+    private Long surcharge = 0L;
+
+    public Long addSurcharge(Long amount) {
+        return surcharge += amount;
+    }
 }

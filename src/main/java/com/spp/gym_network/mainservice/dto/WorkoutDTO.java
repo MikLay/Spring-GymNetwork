@@ -11,9 +11,6 @@ import java.sql.Timestamp;
 public class WorkoutDTO {
     private Long id;
 
-    @JsonFormat(pattern = "yyyy-MM-dd")
-    private Timestamp date;
-
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Timestamp startTime;
 
@@ -24,7 +21,7 @@ public class WorkoutDTO {
 
     private GymDTO gym;
 
-    private CoachDTO client;
+    private ClientDTO client;
 
     private int surcharge;
 
