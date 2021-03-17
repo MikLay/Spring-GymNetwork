@@ -34,4 +34,4 @@ COPY --from=build ${DEPENDENCY}/META-INF /app/META-INF
 COPY --from=build ${DEPENDENCY}/BOOT-INF/classes /app
 
 EXPOSE 8080
-ENTRYPOINT ["java","-cp","app:app/lib/*","com.spp.gym_network.mainservice.MainServiceApplication"]
+ENTRYPOINT ["java","-Dspring.profiles.active=docker","-cp","app:app/lib/*","com.spp.gym_network.mainservice.MainServiceApplication"]
