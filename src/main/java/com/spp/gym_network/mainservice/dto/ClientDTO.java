@@ -10,5 +10,7 @@ import java.util.List;
 @EqualsAndHashCode(callSuper = true)
 @Data
 public class ClientDTO extends UserDTO {
+
+    @JsonView(JsonViews.Detailed.class)
     private List<SubscriptionDTO> subscriptions;
 }

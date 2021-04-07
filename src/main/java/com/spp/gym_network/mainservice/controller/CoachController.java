@@ -1,6 +1,8 @@
 package com.spp.gym_network.mainservice.controller;
 
+import com.fasterxml.jackson.annotation.JsonView;
 import com.spp.gym_network.mainservice.dto.CoachDTO;
+import com.spp.gym_network.mainservice.dto.JsonViews;
 import com.spp.gym_network.mainservice.dto.mappers.CoachMapper;
 import com.spp.gym_network.mainservice.dto.specifications.CoachSpec;
 import com.spp.gym_network.mainservice.service.CoachService;
@@ -22,6 +24,8 @@ public class CoachController {
     @Autowired
     private CoachService coachService;
 
+
+    @JsonView(JsonViews.Summary.class)
     @GetMapping("/coaches")
     public ResponseEntity<Page<CoachDTO>> findAll(CoachSpec spec, Pageable page) {
         return ResponseEntity.ok(coachService.findAll(spec, page).map(coachMapper::toDto));

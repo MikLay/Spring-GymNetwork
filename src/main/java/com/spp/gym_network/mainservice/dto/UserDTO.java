@@ -20,12 +20,15 @@ public class UserDTO {
 
     private String email;
 
+    @JsonView(JsonViews.Detailed.class)
     @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
     private Timestamp birthDate;
 
+    @JsonView(JsonViews.Detailed.class)
     @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
     private Timestamp registrationDate;
 
+    @JsonView(JsonViews.Detailed.class)
     private String phoneNumber;
 
     private String avatar;

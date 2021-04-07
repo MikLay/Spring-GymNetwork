@@ -29,6 +29,9 @@ public class GymEntity {
 
     private String email;
 
+    @Lob
+    private byte[] image;
+
     @Embedded
     private Address address;
 

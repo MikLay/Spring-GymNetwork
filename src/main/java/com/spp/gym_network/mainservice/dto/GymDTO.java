@@ -20,6 +20,7 @@ public class GymDTO {
     @JsonUnwrapped
     private AddressDTO address;
 
+    private String avatar;
 
     @JsonView(JsonViews.Detailed.class)
     private List<EquipmentDTO> equipment;
