@@ -18,10 +18,13 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.stereotype.Service;
 
+import javax.persistence.criteria.Predicate;
 import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -44,14 +47,20 @@ public class DefaultWorkoutService implements WorkoutService {
     @Override
     public Page<WorkoutEntity> findMyWorkouts(CustomUserDetails user, WorkoutSpec spec, Pageable page) {
         List<String> roles = user.getAuthorities().stream().map(GrantedAuthority::getAuthority).collect(Collectors.toList());
-        if (roles.contains(ERoles.ROLE_CLIENT.name())) {
-            return workoutRepository.findAllByClient_Id(user.getId(), page);
-        } else if (roles.contains(ERoles.ROLE_COACH.name())) {
-            return workoutRepository.findAllByCoach_Id(user.getId(), page);
-        } else {
-            //TODO: Add manager variant
-            return null;
-        }
+
+        Specification<WorkoutEntity> specId = Specification.where(spec).and((root, query, cb) -> {
+            ArrayList<Predicate> predicates = new ArrayList<>();
+            if (roles.contains(ERoles.ROLE_CLIENT.name())) {
+                predicates.add(cb.equal(root.get("client").get("id"), user.getId()));
+            } else if (roles.contains(ERoles.ROLE_COACH.name())) {
+                predicates.add(cb.equal(root.get("coach").get("id"), user.getId()));
+            } else if (roles.contains(ERoles.ROLE_MANAGER.name())) {
+                predicates.add(cb.equal(root.get("gym").get("id"), user.getId()));
+            }
+            return cb.and(predicates.toArray(new Predicate[predicates.size()]));
+        });
+
+        return workoutRepository.findAll(specId, page);
     }
 
     @Override
@@ -77,7 +86,7 @@ public class DefaultWorkoutService implements WorkoutService {
         if (coachId != null) {
             Optional<CoachEntity> coach = coachRepository.findById(coachId);
             coach.ifPresentOrElse((coachEntity) -> coachEntity.getTimetables().stream()
-                    // Check if there are timetables that fir workout`s time in selected gym
+                    // Check if there are timetables that fit workout`s time in selected gym
                     .filter(timetableEntity -> timetableEntity.getGym().getId().equals(gymId))
                     .filter(timetableEntity -> startTime.after(timetableEntity.getStartTime())
                             && startTime.before(timetableEntity.getEndTime())
