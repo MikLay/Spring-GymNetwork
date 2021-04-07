@@ -16,5 +16,5 @@ public interface UserService {
 
     boolean verifyUser(String token) throws InvalidTokenException;
 
-    UserEntity getUserByEmail(String email);
+    UserEntity getUserInformation(Long id);
 }

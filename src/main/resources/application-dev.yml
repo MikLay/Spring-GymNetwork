@@ -9,6 +9,16 @@ server:
         secure: true
         http-only: true
 
+logging:
+  level:
+    org:
+      hibernate:
+        type:
+          descriptor:
+            sql:
+              BasicBinder: TRACE
+        SQL: DEBUG
+
 # Spring properties
 spring:
   datasource:
@@ -38,7 +48,11 @@ spring:
     test-connection: true
   # JPA
   jpa:
-    hibernate.ddl-auto: update
+    properties:
+      hibernate:
+        jdbc:
+          time_zone: UTC
+      ddl-auto: update
     show-sql: true
     properties.hibernate.dialect: org.hibernate.dialect.MySQL8Dialect
   #  session:

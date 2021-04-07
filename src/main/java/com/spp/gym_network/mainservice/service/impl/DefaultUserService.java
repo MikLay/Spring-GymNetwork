@@ -107,8 +107,8 @@ public class DefaultUserService implements UserService {
     }
 
     @Override
-    public UserEntity getUserByEmail(String email) {
-        return userRepository.findByEmail(email);
+    public UserEntity getUserInformation(Long id) {
+        return userRepository.getOne(id);
     }
 
 

@@ -1,29 +1,28 @@
 package com.spp.gym_network.mainservice.controller;
 
+import com.spp.gym_network.mainservice.dto.UserDTO;
+import com.spp.gym_network.mainservice.dto.mappers.UserMapper;
+import com.spp.gym_network.mainservice.security.CustomUserDetails;
+import com.spp.gym_network.mainservice.service.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.HashMap;
-import java.util.Map;
-
-import static java.util.stream.Collectors.toList;
-import static org.springframework.http.ResponseEntity.ok;
-
 @RestController()
 public class UserInfoController {
+
+    @Qualifier("userMapperImpl")
+    @Autowired
+    private UserMapper userMapper;
+
+    @Autowired
+    private UserService userService;
+
     @GetMapping("/me")
-    public ResponseEntity currentUser(@AuthenticationPrincipal UserDetails userDetails) {
-        Map<Object, Object> model = new HashMap<>();
-        model.put("username", userDetails.getUsername());
-        model.put("roles", userDetails.getAuthorities()
-                .stream()
-                .map(GrantedAuthority::getAuthority)
-                .collect(toList())
-        );
-        return ok(model);
+    public ResponseEntity<UserDTO> currentUser(@AuthenticationPrincipal CustomUserDetails userDetails) {
+        return ResponseEntity.ok(userMapper.toDto(userService.getUserInformation(userDetails.getId())));
     }
 }
