@@ -15,14 +15,14 @@ import org.springframework.data.jpa.domain.Specification;
         @Spec(path = "id", spec = Equal.class),
         @Spec(
                 path = "startTime",
-                params = "startTime",
-                spec = GreaterThanOrEqual.class,
+                params = "start_time",
+                spec = LessThanOrEqual.class,
                 config = "yyyy-MM-dd HH:mm:ss"
         ),
         @Spec(
                 path = "endTime",
-                params = "endTime",
-                spec = LessThanOrEqual.class,
+                params = "end_time",
+                spec = GreaterThanOrEqual.class,
                 config = "yyyy-MM-dd HH:mm:ss"
         ),
         @Spec(path = "gym.id", params = "gym_id", spec = Equal.class),
