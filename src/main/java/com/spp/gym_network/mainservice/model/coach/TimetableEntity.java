@@ -1,5 +1,6 @@
 package com.spp.gym_network.mainservice.model.coach;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.spp.gym_network.mainservice.model.gym.GymEntity;
 import lombok.Getter;
 import lombok.Setter;
@@ -17,8 +18,10 @@ public class TimetableEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
     private Timestamp startTime;
 
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
     private Timestamp endTime;
 
     @ManyToOne(fetch = FetchType.LAZY)
