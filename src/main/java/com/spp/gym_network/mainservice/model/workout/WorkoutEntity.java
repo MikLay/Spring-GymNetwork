@@ -1,5 +1,6 @@
 package com.spp.gym_network.mainservice.model.workout;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.spp.gym_network.mainservice.model.client.ClientEntity;
 import com.spp.gym_network.mainservice.model.coach.CoachEntity;
 import com.spp.gym_network.mainservice.model.gym.GymEntity;
@@ -16,8 +17,10 @@ public class WorkoutEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
     private Timestamp startTime;
 
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
     private Timestamp endTime;
 
     @ManyToOne(fetch = FetchType.LAZY)

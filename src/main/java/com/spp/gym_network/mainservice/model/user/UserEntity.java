@@ -1,6 +1,7 @@
 package com.spp.gym_network.mainservice.model.user;
 
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.spp.gym_network.mainservice.model.security.SecureToken;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -32,9 +33,11 @@ public class UserEntity implements Serializable {
 
     private String lastName;
 
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
     private Timestamp birthDate;
 
     @CreationTimestamp
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
     @Column(updatable = false)
     private Timestamp registrationDate;
 
