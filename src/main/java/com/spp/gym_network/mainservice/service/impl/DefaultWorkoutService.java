@@ -8,10 +8,7 @@ import com.spp.gym_network.mainservice.model.coach.CoachEntity;
 import com.spp.gym_network.mainservice.model.gym.GymEntity;
 import com.spp.gym_network.mainservice.model.user.ERoles;
 import com.spp.gym_network.mainservice.model.workout.WorkoutEntity;
-import com.spp.gym_network.mainservice.repository.ClientRepository;
-import com.spp.gym_network.mainservice.repository.CoachRepository;
-import com.spp.gym_network.mainservice.repository.GymRepository;
-import com.spp.gym_network.mainservice.repository.WorkoutRepository;
+import com.spp.gym_network.mainservice.repository.*;
 import com.spp.gym_network.mainservice.security.CustomUserDetails;
 import com.spp.gym_network.mainservice.service.WorkoutService;
 import lombok.extern.slf4j.Slf4j;
@@ -43,6 +40,9 @@ public class DefaultWorkoutService implements WorkoutService {
 
     @Autowired
     ClientRepository clientRepository;
+
+    @Autowired
+    ManagerRepository managerRepository;
 
     @Override
     public Page<WorkoutEntity> findMyWorkouts(CustomUserDetails user, WorkoutSpec spec, Pageable page) {
@@ -129,5 +129,16 @@ public class DefaultWorkoutService implements WorkoutService {
         });
 
         return workoutRepository.save(workout);
+    }
+
+    @Override
+    public Boolean verifyWorkout(Long managerId, Long workoutId) {
+        WorkoutEntity workout = workoutRepository.findById(workoutId)
+                .orElseThrow(() -> new EntityNotFoundException("No workout with id:" + workoutId));
+        if (managerRepository.existsByIdAndGyms_Id(managerId, workoutId)) {
+            workout.setVerified(true);
+        }
+        return workoutRepository.save(workout).isVerified();
+
     }
 }

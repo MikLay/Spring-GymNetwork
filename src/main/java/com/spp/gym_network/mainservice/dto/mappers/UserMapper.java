@@ -15,6 +15,9 @@ public interface UserMapper {
 
     @Named("encodeImage")
     default String imageEncoding(byte[] image) {
+        if (image == null) {
+            return null;
+        }
         byte[] encode = java.util.Base64.getEncoder().encode(image);
         return new String(encode, StandardCharsets.UTF_8);
     }

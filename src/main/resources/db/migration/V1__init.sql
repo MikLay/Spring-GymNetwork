@@ -9,7 +9,8 @@ create table if not exists gyms
     street varchar(255) null,
     email varchar(255) null,
     fine bigint null,
-    phone varchar(255) null
+    phone varchar(255) null,
+    image longblob null
     );
 
 create table if not exists equipment
@@ -156,6 +157,7 @@ create table if not exists workouts
     client_id bigint null,
     coach_id bigint null,
     gym_id bigint null,
+    verified bit not null,
     constraint FK5k4qtecoodyigr0fxew9y4tmg
     foreign key (coach_id) references coaches (id),
     constraint FKi2r9v4var1p9ggmtq4idfnip8

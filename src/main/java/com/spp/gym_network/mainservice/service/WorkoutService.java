@@ -12,4 +12,6 @@ public interface WorkoutService {
     Page<WorkoutEntity> findMyWorkouts(CustomUserDetails user, WorkoutSpec spec, Pageable page);
 
     WorkoutEntity createWorkout(Long clientId, Long coachId, Long gymId, Timestamp startTime, Timestamp endTime );
+
+    Boolean verifyWorkout(Long managerId, Long workoutId);
 }

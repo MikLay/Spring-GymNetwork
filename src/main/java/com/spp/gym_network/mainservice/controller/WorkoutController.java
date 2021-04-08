@@ -50,4 +50,10 @@ public class WorkoutController {
         ));
         return ResponseEntity.ok(workoutDTO);
     }
+
+    @PostMapping("/{id}/verify")
+    @PreAuthorize(" hasRole('ROLE_MANAGER')")
+    public ResponseEntity<Boolean> verifyWorkout(@AuthenticationPrincipal CustomUserDetails userDetails, @PathVariable("id") String id) {
+        return ResponseEntity.ok(workoutService.verifyWorkout(userDetails.getId(), Long.parseLong(id)));
+    }
 }

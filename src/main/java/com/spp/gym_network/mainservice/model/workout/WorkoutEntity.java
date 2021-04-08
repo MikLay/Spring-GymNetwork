@@ -37,6 +37,8 @@ public class WorkoutEntity {
 
     private Long surcharge = 0L;
 
+    private boolean verified;
+
     public Long addSurcharge(Long amount) {
         return surcharge += amount;
     }
