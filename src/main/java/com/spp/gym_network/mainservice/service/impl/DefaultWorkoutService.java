@@ -1,11 +1,11 @@
 package com.spp.gym_network.mainservice.service.impl;
 
-import com.spp.gym_network.mainservice.dto.specifications.WorkoutSpec;
 import com.spp.gym_network.mainservice.exception.EntityNotFoundException;
 import com.spp.gym_network.mainservice.exception.WorkoutProvidedDataException;
 import com.spp.gym_network.mainservice.model.client.SubscriptionEntity;
 import com.spp.gym_network.mainservice.model.coach.CoachEntity;
 import com.spp.gym_network.mainservice.model.gym.GymEntity;
+import com.spp.gym_network.mainservice.model.specification.WorkoutSpec;
 import com.spp.gym_network.mainservice.model.user.ERoles;
 import com.spp.gym_network.mainservice.model.workout.WorkoutEntity;
 import com.spp.gym_network.mainservice.repository.*;

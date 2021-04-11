@@ -36,6 +36,7 @@ public class DefaultTimetableService implements TimetableService {
 
     @Override
     public TimetableEntity createTimetable(Long coachId, Long gymId, Timestamp startTime, Timestamp endTime) {
+        //TODO: add if there is no timetable at this time for this coach.
         GymEntity gym = gymRepository.getOne(gymId);
         CoachEntity coach = coachRepository.getOne(coachId);
         TimetableEntity timetable = new TimetableEntity();

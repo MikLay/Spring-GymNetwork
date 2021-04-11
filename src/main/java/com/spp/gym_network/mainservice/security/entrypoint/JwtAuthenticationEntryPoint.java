@@ -1,4 +1,4 @@
-package com.spp.gym_network.mainservice.security.entrypoints;
+package com.spp.gym_network.mainservice.security.entrypoint;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.AuthenticationException;

@@ -1,4 +1,4 @@
-package com.spp.gym_network.mainservice.dto.requests;
+package com.spp.gym_network.mainservice.dto.request;
 
 import lombok.Getter;
 import lombok.Setter;

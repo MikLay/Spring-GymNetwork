@@ -4,7 +4,7 @@ import com.fasterxml.jackson.annotation.JsonView;
 import com.spp.gym_network.mainservice.dto.CoachDTO;
 import com.spp.gym_network.mainservice.dto.JsonViews;
 import com.spp.gym_network.mainservice.dto.mappers.CoachMapper;
-import com.spp.gym_network.mainservice.dto.specifications.CoachSpec;
+import com.spp.gym_network.mainservice.model.specification.CoachSpec;
 import com.spp.gym_network.mainservice.service.CoachService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;

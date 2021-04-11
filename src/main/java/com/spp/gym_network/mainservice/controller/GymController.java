@@ -6,7 +6,7 @@ import com.spp.gym_network.mainservice.dto.GymDTO;
 import com.spp.gym_network.mainservice.dto.GymStatisticDTO;
 import com.spp.gym_network.mainservice.dto.JsonViews;
 import com.spp.gym_network.mainservice.dto.mappers.GymMapper;
-import com.spp.gym_network.mainservice.dto.specifications.GymSpec;
+import com.spp.gym_network.mainservice.model.specification.GymSpec;
 import com.spp.gym_network.mainservice.security.CustomUserDetails;
 import com.spp.gym_network.mainservice.service.GymService;
 import com.spp.gym_network.mainservice.service.ManagerService;

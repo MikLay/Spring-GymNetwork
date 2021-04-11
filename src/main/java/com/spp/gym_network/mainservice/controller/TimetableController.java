@@ -4,7 +4,7 @@ import com.fasterxml.jackson.annotation.JsonView;
 import com.spp.gym_network.mainservice.dto.JsonViews;
 import com.spp.gym_network.mainservice.dto.TimetableDTO;
 import com.spp.gym_network.mainservice.dto.mappers.TimetableMapper;
-import com.spp.gym_network.mainservice.dto.requests.TimetableCreateRequest;
+import com.spp.gym_network.mainservice.dto.request.TimetableCreateRequest;
 import com.spp.gym_network.mainservice.security.CustomUserDetails;
 import com.spp.gym_network.mainservice.service.TimetableService;
 import lombok.extern.slf4j.Slf4j;

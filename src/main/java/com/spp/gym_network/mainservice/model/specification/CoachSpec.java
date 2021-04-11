@@ -1,4 +1,4 @@
-package com.spp.gym_network.mainservice.dto.specifications;
+package com.spp.gym_network.mainservice.model.specification;
 
 import com.spp.gym_network.mainservice.model.coach.CoachEntity;
 import net.kaczmarzyk.spring.data.jpa.domain.Equal;

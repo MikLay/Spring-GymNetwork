@@ -1,7 +1,7 @@
-package com.spp.gym_network.mainservice.security.filters;
+package com.spp.gym_network.mainservice.security.filter;
 
-import com.spp.gym_network.mainservice.service.impl.CustomUserDetailsService;
 import com.spp.gym_network.mainservice.security.provider.JwtTokenProvider;
+import com.spp.gym_network.mainservice.service.impl.CustomUserDetailsService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -10,6 +10,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
 import org.springframework.util.StringUtils;
 import org.springframework.web.filter.OncePerRequestFilter;
+
 import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;

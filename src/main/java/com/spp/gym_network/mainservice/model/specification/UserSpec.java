@@ -1,4 +1,4 @@
-package com.spp.gym_network.mainservice.dto.specifications;
+package com.spp.gym_network.mainservice.model.specification;
 
 import com.spp.gym_network.mainservice.model.user.UserEntity;
 import net.kaczmarzyk.spring.data.jpa.domain.Between;

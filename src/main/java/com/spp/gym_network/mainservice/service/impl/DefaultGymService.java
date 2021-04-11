@@ -1,9 +1,9 @@
 package com.spp.gym_network.mainservice.service.impl;
 
 import com.spp.gym_network.mainservice.dto.GymStatisticDTO;
-import com.spp.gym_network.mainservice.dto.specifications.GymSpec;
 import com.spp.gym_network.mainservice.exception.EntityNotFoundException;
 import com.spp.gym_network.mainservice.model.gym.GymEntity;
+import com.spp.gym_network.mainservice.model.specification.GymSpec;
 import com.spp.gym_network.mainservice.repository.GymRepository;
 import com.spp.gym_network.mainservice.repository.ManagerRepository;
 import com.spp.gym_network.mainservice.service.GymService;

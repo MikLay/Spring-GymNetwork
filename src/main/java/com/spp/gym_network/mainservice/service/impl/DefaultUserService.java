@@ -1,6 +1,6 @@
 package com.spp.gym_network.mainservice.service.impl;
 
-import com.spp.gym_network.mainservice.dto.requests.SignUpRequest;
+import com.spp.gym_network.mainservice.dto.request.SignUpRequest;
 import com.spp.gym_network.mainservice.exception.InvalidTokenException;
 import com.spp.gym_network.mainservice.exception.UserAlreadyExistException;
 import com.spp.gym_network.mainservice.model.security.SecureToken;
@@ -56,9 +56,10 @@ public class DefaultUserService implements UserService {
         }
         UserEntity userEntity = new UserEntity();
         BeanUtils.copyProperties(user, userEntity);
-        //TODO: add better role logic
+
         userEntity.setBirthDate(Timestamp.valueOf(user.getBirthDate().atStartOfDay()));
-        userEntity.setRoles(Stream.of(roleRepository.findByName(ERoles.ROLE_USER), roleRepository.findByName(ERoles.ROLE_CLIENT))
+        userEntity.setRoles(Stream.of(roleRepository.findByName(ERoles.ROLE_USER),
+                roleRepository.findByName(ERoles.ROLE_CLIENT))
                 .collect(Collectors.toCollection(HashSet::new)));
         encodePassword(userEntity, user);
         try {
@@ -76,7 +77,8 @@ public class DefaultUserService implements UserService {
         SecureToken secureToken = secureTokenService.createSecureToken();
         secureToken.setUser(user);
         secureTokenRepository.save(secureToken);
-        AccountVerificationEmailContext emailContext = new AccountVerificationEmailContext();
+        AccountVerificationEmailContext emailContext
+                = new AccountVerificationEmailContext();
         emailContext.init(user);
         emailContext.setToken(secureToken.getToken());
         emailContext.buildVerificationUrl(baseURL, secureToken.getToken());
