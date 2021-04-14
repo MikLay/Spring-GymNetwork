@@ -53,7 +53,7 @@ public class GymController {
     }
 
 
-    @JsonView(JsonViews.Summary.class)
+    @JsonView(JsonViews.Detailed.class)
     @GetMapping("/gyms/{id}")
     public ResponseEntity<GymDTO> getGym(@PathVariable("id") String id) {
         return ResponseEntity.ok(gymMapper.toDto(gymService.findById(Long.parseLong(id))));
