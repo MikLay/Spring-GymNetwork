@@ -1,0 +1,1 @@
+ALTER table subscriptions ADD uid VARCHAR(255);
