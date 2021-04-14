@@ -1,9 +1,6 @@
 package com.spp.gym_network.mainservice.model.gym;
 
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 
 import javax.persistence.*;
 
@@ -13,6 +10,7 @@ import javax.persistence.*;
 @Table(name = "equipment")
 @ToString
 @EqualsAndHashCode
+@NoArgsConstructor
 public class EquipmentEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -24,6 +22,10 @@ public class EquipmentEntity {
 
     private String equipmentCondition;
 
+    @Column(name = "image_url")
+    private String imageUrl;
+
+    @ToString.Exclude
     @ManyToOne
     @JoinColumn(name = "gym_id")
     private GymEntity gym;
