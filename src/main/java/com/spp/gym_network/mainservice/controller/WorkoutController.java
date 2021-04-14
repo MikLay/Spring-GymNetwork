@@ -5,6 +5,7 @@ import com.spp.gym_network.mainservice.dto.JsonViews;
 import com.spp.gym_network.mainservice.dto.WorkoutDTO;
 import com.spp.gym_network.mainservice.dto.mappers.WorkoutMapper;
 import com.spp.gym_network.mainservice.dto.request.WorkoutCreateRequest;
+import com.spp.gym_network.mainservice.dto.request.WorkoutUIDVerificationRequest;
 import com.spp.gym_network.mainservice.model.specification.WorkoutSpec;
 import com.spp.gym_network.mainservice.security.CustomUserDetails;
 import com.spp.gym_network.mainservice.service.WorkoutService;
@@ -55,5 +56,13 @@ public class WorkoutController {
     @PreAuthorize(" hasRole('ROLE_MANAGER')")
     public ResponseEntity<Boolean> verifyWorkout(@AuthenticationPrincipal CustomUserDetails userDetails, @PathVariable("id") String id) {
         return ResponseEntity.ok(workoutService.verifyWorkout(userDetails.getId(), Long.parseLong(id)));
+    }
+
+    @PostMapping("/uid-verification")
+    @PreAuthorize("hasRole('ROLE_MANAGER')")
+    public ResponseEntity<Boolean> verifyWorkoutByClientUID(@AuthenticationPrincipal CustomUserDetails userDetails,
+                                                            final @Valid @RequestBody WorkoutUIDVerificationRequest workoutVerificationRequest) {
+        return ResponseEntity.ok(workoutService.verifyWorkout(userDetails.getId(), workoutVerificationRequest));
+
     }
 }

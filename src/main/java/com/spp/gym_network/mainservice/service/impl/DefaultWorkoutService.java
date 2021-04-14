@@ -1,5 +1,6 @@
 package com.spp.gym_network.mainservice.service.impl;
 
+import com.spp.gym_network.mainservice.dto.request.WorkoutUIDVerificationRequest;
 import com.spp.gym_network.mainservice.exception.EntityNotFoundException;
 import com.spp.gym_network.mainservice.exception.WorkoutProvidedDataException;
 import com.spp.gym_network.mainservice.model.client.SubscriptionEntity;
@@ -21,6 +22,7 @@ import org.springframework.stereotype.Service;
 
 import javax.persistence.criteria.Predicate;
 import java.sql.Timestamp;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -43,6 +45,9 @@ public class DefaultWorkoutService implements WorkoutService {
 
     @Autowired
     ManagerRepository managerRepository;
+
+    @Autowired
+    SubscriptionRepository subscriptionRepository;
 
     @Override
     public Page<WorkoutEntity> findMyWorkouts(CustomUserDetails user, WorkoutSpec spec, Pageable page) {
@@ -85,6 +90,8 @@ public class DefaultWorkoutService implements WorkoutService {
         // For workout with coach
         if (coachId != null) {
             Optional<CoachEntity> coach = coachRepository.findById(coachId);
+            coach.ifPresent(workout::setCoach);
+/*
             coach.ifPresentOrElse((coachEntity) -> coachEntity.getTimetables().stream()
                     // Check if there are timetables that fit workout`s time in selected gym
                     .filter(timetableEntity -> timetableEntity.getGym().getId().equals(gymId))
@@ -102,6 +109,7 @@ public class DefaultWorkoutService implements WorkoutService {
                             }), () -> {
                 throw new EntityNotFoundException("Coach with id: " + coachId + " not found");
             });
+*/
 
         }
 
@@ -140,5 +148,24 @@ public class DefaultWorkoutService implements WorkoutService {
         }
         return workoutRepository.save(workout).isVerified();
 
+    }
+
+    @Override
+    public Boolean verifyWorkout(Long managerId, WorkoutUIDVerificationRequest workoutUID) {
+        SubscriptionEntity subscription = subscriptionRepository.findFirstByUid(workoutUID.getUid())
+                .orElseThrow(() -> new EntityNotFoundException("No subscription with such UID" + workoutUID.getUid()));
+        Timestamp timeNow = Timestamp.valueOf(LocalDateTime.now());
+        // TODO: create exception for anactive subscription
+        WorkoutEntity workout = subscription.getClient().getWorkouts().stream().filter(workoutEntity -> {
+            return workoutEntity.getStartTime().before(timeNow) && workoutEntity.getEndTime().after(timeNow);
+        }).findFirst().orElseThrow(() -> new EntityNotFoundException("No workouts now"));
+
+        if (managerRepository.existsByIdAndGyms_Id(managerId, workout.getId())
+                && subscription.getStartingDatetime().before(timeNow)
+                && subscription.getExpiringDatetime().after(timeNow)) {
+            workout.setVerified(true);
+        }
+
+        return workoutRepository.save(workout).isVerified();
     }
 }

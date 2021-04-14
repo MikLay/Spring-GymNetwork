@@ -30,6 +30,8 @@ public class SubscriptionEntity {
 
     private Long price;
 
+    private String uid;
+
     @ManyToOne
     @JoinColumn(name = "client_id", referencedColumnName = "id")
     private ClientEntity client;
